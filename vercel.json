@@ -1,10 +1,9 @@
 {
     "version": 2,
     "routes": [
-      { "handle": "filesystem" },
       {
-        "src": "/(.*)",
-        "dest": "/index.py"
+        "src": "/<path:path>",
+        "dest": "/api/<path:path>"
       }
     ],
     "build": {
