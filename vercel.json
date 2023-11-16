@@ -1,15 +1,15 @@
 {
-    "version": 2,
-    "routes": [
-      {
-        "src": "/<path:path>",
-        "dest": "/api/<path:path>"
-      }
-    ],
-    "build": {
-      "env": {
-        "VERCEL": "1",
-        "HYDROROLL": "2"
-      }
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/api"
+    }
+  ],
+  "build": {
+    "env": {
+      "VERCEL": "1",
+      "HYDROROLL": "2"
     }
   }
+}
