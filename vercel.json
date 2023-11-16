@@ -4,7 +4,7 @@
       { "handle": "filesystem" },
       {
         "src": "/(.*)",
-        "dest": "/api/index.py"
+        "dest": "/index.py"
       }
     ],
     "build": {
