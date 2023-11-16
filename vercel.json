@@ -9,7 +9,8 @@
     ],
     "build": {
       "env": {
-        "VERCEL": "1"
+        "VERCEL": "1",
+        "HYDROROLL": "2"
       }
     }
   }
