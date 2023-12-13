@@ -10,7 +10,7 @@ async def get_version():
         hydroroll = await get_target_version("hydroroll")
         iamai = await get_target_version("iamai")
         psi = await get_target_version("psi")
-        hydrorollcore = await get_target_version("hydrorollcore")
+        hydrorollcore = await get_target_version("infini")
         oneroll = await get_target_version("oneroll")
         return hydroroll | iamai | psi | oneroll | hydrorollcore
     except Exception as e:
