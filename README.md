@@ -1,2 +1,2 @@
 # api
-hydroroll api site with lock.
+hydroroll api site with locked.
