@@ -10,9 +10,9 @@ async def get_version():
         hydroroll = await get_target_version("hydroroll")
         iamai = await get_target_version("iamai")
         psi = await get_target_version("psi")
-        hydrorollcore = await get_target_version("infini")
+        infini = await get_target_version("infini")
         oneroll = await get_target_version("oneroll")
-        return hydroroll | iamai | psi | oneroll | hydrorollcore
+        return hydroroll | iamai | psi | oneroll | infini
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
