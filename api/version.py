@@ -4,6 +4,7 @@ import aiohttp
 app = FastAPI()
 
 @app.get("/api/version")
+@app.post("/api/version")
 async def get_version(
     project: str = Query(None),
     repo: str = Query(None),
