@@ -18,7 +18,15 @@ def hello_world():
 
 @app.get("/api/github_og")
 async def image(request: Request):
+    
     repo_url = "https://github.com/HydroRoll-Team/HydroRoll"
+    
+    repo = request.path_params.get("repo", None)
+    if repo:
+        repo_url = f"https://github.com/{repo}"
+    else:
+        repo_url = request.path_params.get("url", repo_url)
+    
     conn=aiohttp.TCPConnector(verify_ssl=False)
     async with semaphore:
         async with aiohttp.request('GET',repo_url, connector=conn) as resp:
