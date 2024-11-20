@@ -1,7 +1,7 @@
 import asyncio
 import aiohttp
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 
 from bs4 import BeautifulSoup
@@ -17,7 +17,7 @@ def hello_world():
     return {"message": "Hello World"}
 
 @app.get("/api/github_og")
-async def image():
+async def image(request: Request):
     repo_url = "https://github.com/HydroRoll-Team/HydroRoll"
     conn=aiohttp.TCPConnector(verify_ssl=False)
     async with semaphore:
@@ -28,5 +28,9 @@ async def image():
             text = await resp.text()
             soup = BeautifulSoup(text, "html.parser")
             og_image = soup.find("meta", property="og:image")["content"]
-            return RedirectResponse(url=og_image)
+            
+            if request.headers.get("Content-Type") == "application/json":
+                return {"url": og_image}
+            else:
+                return RedirectResponse(url=og_image)
     
