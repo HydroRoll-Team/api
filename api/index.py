@@ -21,17 +21,17 @@ async def image(request: Request):
     
     repo_url = "https://github.com/HydroRoll-Team/HydroRoll"
     
-    repo = request.path_params.get("repo", None)
+    repo = request.query_params.get("repo", None)
     if repo:
         repo_url = f"https://github.com/{repo}"
     else:
-        repo_url = request.path_params.get("url", repo_url)
+        repo_url = request.query_params.get("url", repo_url)
     
     conn=aiohttp.TCPConnector(verify_ssl=False)
     async with semaphore:
         async with aiohttp.request('GET',repo_url, connector=conn) as resp:
-            if resp.status != 200:
-                return {"message": resp.text(), "status":resp.status }
+            if not resp.ok:
+                return { "status":resp.status }
             
             text = await resp.text()
             soup = BeautifulSoup(text, "html.parser")
@@ -41,4 +41,4 @@ async def image(request: Request):
                 return {"url": og_image}
             else:
                 return RedirectResponse(url=og_image)
-    
+   
