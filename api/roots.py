@@ -21,3 +21,4 @@ class handler(BaseHTTPRequestHandler):
 
             self.wfile.write(response_json.encode('utf-8'))
         return
+    
