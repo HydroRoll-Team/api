@@ -1,9 +1,11 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import HTTPException, Query
 import aiohttp
 
-app = FastAPI()
+from fastapi import APIRouter
 
-@app.get("/api/version")
+router = APIRouter()
+
+@router.get("/api/version")
 async def get_version(
     project: str = Query(None),
     repo: str = Query(None),

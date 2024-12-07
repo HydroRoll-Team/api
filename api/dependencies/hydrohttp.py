@@ -9,9 +9,9 @@ from fastapi import status
 class HttpMethod(Enum):
     GET = "GET"
     POST = "POST"
-    # PUT = "PUT"
-    # DELETE = "DELETE"
-    # PATCH = "PATCH"
+    PUT = "PUT"
+    DELETE = "DELETE"
+    PATCH = "PATCH"
 
 
 class HttpRequestResult:
@@ -97,3 +97,53 @@ async def http_request(
             result.add_error(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, message=str(e))
             return result
+
+async def get(url: str,
+              content_type: ContentType = ContentType.JSON,
+              limit: int = 10,
+              timeout: int = 1,
+              verify_ssl: bool = True) -> HttpRequestResult:
+    """_summary_
+
+    Args:
+        url (str): _description_
+        content_type (ContentType, optional): _description_. Defaults to ContentType.JSON.
+        limit (int, optional): _description_. Defaults to 10.
+        timeout (int, optional): _description_. Defaults to 1.
+        verify_ssl (bool, optional): _description_. Defaults to True.
+
+    Returns:
+        HttpRequestResult: _description_
+    """
+    return await http_request(url=url,
+                              method=HttpMethod.GET,
+                              content_type=content_type,
+                              limit=limit,
+                              timeout=timeout,
+                              verify_ssl=verify_ssl
+)
+
+async def post(url: str,
+               content_type: ContentType = ContentType.JSON,
+               limit: int = 10,
+               timeout: int = 1,
+               verify_ssl: bool = True) -> HttpRequestResult:
+    """_summary_
+
+    Args:
+        url (str): _description_
+        content_type (ContentType, optional): _description_. Defaults to ContentType.JSON.
+        limit (int, optional): _description_. Defaults to 10.
+        timeout (int, optional): _description_. Defaults to 1.
+        verify_ssl (bool, optional): _description_. Defaults to True.
+
+    Returns:
+        HttpRequestResult: _description_
+    """
+    return await http_request(url=url,
+                              method=HttpMethod.POST,
+                              content_type=content_type,
+                              limit=limit,
+                              timeout=timeout,
+                              verify_ssl=verify_ssl
+)
