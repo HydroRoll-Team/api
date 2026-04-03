@@ -8,8 +8,7 @@
     "dev": "concurrently \"npm run next-dev\" \"npm run fastapi-dev\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "preinstall": "node preinstall.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/node": "20.2.4",
