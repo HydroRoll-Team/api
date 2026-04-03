@@ -1,15 +1,12 @@
-from bs4 import BeautifulSoup
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import RedirectResponse
 
-from ..dependencies.hydrohttp import http_request, HttpMethod, ContentType
+from util.hydrohttp import http_request, HttpMethod, ContentType
 
-from fastapi import APIRouter
+app = FastAPI()
 
-router = APIRouter()
-
-@router.get("/api/github_og")
-async def github_og_img(request: Request) -> Response:
+@app.get("/api/github_og")
+async def image(request: Request) -> Response:
     repo_url = "https://github.com/HydroRoll-Team/HydroRoll"
     repo = request.query_params.get("repo", None)
     if repo:
